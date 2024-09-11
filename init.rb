@@ -18,13 +18,14 @@ Redmine::Plugin.register :redmine_issue_reminder do
     permission :view_issue_reminder, issue_reminder: :index
     permission :send_issue_reminder, issue_reminder: :send_reminders
   end
-
+  
   menu :project_menu, :issue_reminder, 
        { controller: 'issue_reminder', action: 'index' }, 
        caption: :label_issue_reminder, 
        after: :issues, 
        param: :project_id
 end
+
 
 Rails.configuration.to_prepare do
   require_dependency 'redmine_issue_reminder/hooks'
