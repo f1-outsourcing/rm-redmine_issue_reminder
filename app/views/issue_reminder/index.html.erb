@@ -22,7 +22,7 @@
     </tbody>
   </table>
 
-  <%= button_to l(:button_send_reminders), send_reminders_project_issue_reminder_path(@project), method: :post, class: 'button-positive' %>
+  <%= button_to l(:button_send_reminders), project_issue_reminder_send_reminders_path(@project), method: :post, class: 'button-positive' %>
 <% else %>
   <p class="nodata"><%= l(:label_no_data) %></p>
 <% end %>
