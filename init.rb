@@ -8,7 +8,7 @@ Redmine::Plugin.register :redmine_issue_reminder do
   name 'Redmine Issue Reminder plugin'
   author 'L Stuiver'
   description 'Sends email reminders for issues that have not been updated recently'
-  version '0.2.0'
+  version '0.4.0'
   url 'https://github.com/KeKkEmEn/redmine_issue_reminder'
   author_url 'https://github.com/KeKkEmEn'
 
@@ -16,6 +16,8 @@ Redmine::Plugin.register :redmine_issue_reminder do
     'reminder_days' => 7,
     'reminder_text' => 'This issue has not been updated for a while. Please update the status or add a comment.',
     'reminder_roles' => []
+    'days_before_due' => 3,
+    'reminder_text' => 'This issue is due soon. Please update the status or add a comment.'
   }, partial: 'settings/issue_reminder_settings'
 
   project_module :issue_reminder do
