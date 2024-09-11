@@ -1,0 +1,24 @@
+# Redmine Issue Reminder Plugin
+
+This plugin sends email reminders for issues that have not been updated recently.
+
+## Installation
+
+1. Clone this repository into your Redmine plugins directory:
+cd /path/to/redmine/plugins git clone https://github.com/yourusername/redmine_issue_reminder.git
+
+2. Run the plugin migrations:
+bundle exec rake redmine:plugins:migrate RAILS_ENV=production
+
+3. Restart your Redmine application.
+
+## Usage
+
+1. Enable the 'Issue Reminder' module in your project settings.
+2. Configure the plugin settings in Administration -> Plugins -> Redmine Issue Reminder plugin.
+3. Access the Issue Reminder page from the project menu.
+4. Click 'Send Reminders' to send reminders for issues that haven't been updated.
+
+## License
+
+This plugin is licensed under the MIT license.

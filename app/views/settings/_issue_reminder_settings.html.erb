@@ -1,0 +1,23 @@
+<fieldset>
+  <legend><%= l(:label_issue_reminder_settings) %></legend>
+  
+  <p>
+    <label for="settings_reminder_days"><%= l(:label_reminder_days) %></label>
+    <%= text_field_tag 'settings[reminder_days]', @settings['reminder_days'], size: 3 %>
+  </p>
+  
+  <p>
+    <label for="settings_reminder_text"><%= l(:label_reminder_text) %></label>
+    <%= text_area_tag 'settings[reminder_text]', @settings['reminder_text'], rows: 5, cols: 60 %>
+  </p>
+  
+  <p>
+    <label><%= l(:label_reminder_roles) %></label>
+    <% Role.givable.each do |role| %>
+      <label class="block">
+        <%= check_box_tag 'settings[reminder_roles][]', role.id, @settings['reminder_roles'].include?(role.id.to_s) %>
+        <%= role.name %>
+      </label>
+    <% end %>
+  </p>
+</fieldset>
