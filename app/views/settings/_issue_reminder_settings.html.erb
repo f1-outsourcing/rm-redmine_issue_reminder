@@ -15,7 +15,7 @@
     <label><%= l(:label_reminder_roles) %></label>
     <% Role.givable.each do |role| %>
       <label class="block">
-        <%= check_box_tag 'settings[reminder_roles][]', role.id, @settings['reminder_roles'].include?(role.id.to_s) %>
+        <%= check_box_tag 'settings[reminder_roles][]', role.id, (@settings['reminder_roles'] || []).include?(role.id.to_s) %>
         <%= role.name %>
       </label>
     <% end %>
