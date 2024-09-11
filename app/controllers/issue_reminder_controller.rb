@@ -1,4 +1,3 @@
-require_dependency 'issue_reminder_mailer'
 
 class IssueReminderController < ApplicationController
   before_action :find_project
