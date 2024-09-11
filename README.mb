@@ -19,6 +19,18 @@ bundle exec rake redmine:plugins:migrate RAILS_ENV=production
 3. Access the Issue Reminder page from the project menu.
 4. Click 'Send Reminders' to send reminders for issues that haven't been updated.
 
+To set up the automatic reminder, you'll need to create a cron job on your server. Here's how you can do it:
+
+Open the crontab file for editing:
+
+crontab -e
+
+Add a line to run the task daily at a specific time (e.g., 8:00 AM):
+
+0 8 * * * cd /path/to/your/redmine && RAILS_ENV=production bundle exec rake redmine:issue_reminder:send_reminders
+
+Make sure to replace /path/to/your/redmine with the actual path to your Redmine installation.
+
 ## License
 
 This plugin is licensed under the MIT license.
