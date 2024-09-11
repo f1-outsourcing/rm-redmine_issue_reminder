@@ -9,12 +9,16 @@ module RedmineIssueReminder
 
     module InstanceMethods
       def issue_reminder(issue)
-        IssueReminderMailer.issue_reminder(issue)
+        @issue = issue
+        @reminder_text = Setting.plugin_redmine_issue_reminder['reminder_text']
+        mail(to: issue.assigned_to.mail,
+             subject: "#{l(:label_reminder)}: #{issue.subject}",
+             from: Setting.mail_from)
       end
     end
   end
 end
 
-Rails.configuration.to_prepare do
+unless Mailer.included_modules.include?(RedmineIssueReminder::MailerPatch)
   Mailer.send(:include, RedmineIssueReminder::MailerPatch)
 end
