@@ -1,13 +1,14 @@
 <h2><%= l(:label_issue_reminder) %></h2>
 
 <% if @issues.any? %>
+  <p><%= l(:text_issues_to_remind, count: @issues.count) %></p>
   <table class="list issues">
     <thead>
       <tr>
         <th>#</th>
         <th><%= l(:field_subject) %></th>
         <th><%= l(:field_assigned_to) %></th>
-        <th><%= l(:field_updated_on) %></th>
+        <th><%= l(:field_due_date) %></th>
       </tr>
     </thead>
     <tbody>
@@ -16,7 +17,7 @@
           <td><%= link_to issue.id, issue_path(issue) %></td>
           <td><%= issue.subject %></td>
           <td><%= issue.assigned_to %></td>
-          <td><%= format_time(issue.updated_on) %></td>
+          <td><%= format_date(issue.due_date) %></td>
         </tr>
       <% end %>
     </tbody>
