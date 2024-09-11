@@ -1,5 +1,8 @@
 require 'redmine'
-require_dependency 'issue_reminder_mailer'
+
+Rails.configuration.to_prepare do
+  require_dependency 'issue_reminder_mailer'
+end
 
 Redmine::Plugin.register :redmine_issue_reminder do
   name 'Redmine Issue Reminder plugin'
