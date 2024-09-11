@@ -13,9 +13,6 @@ Redmine::Plugin.register :redmine_issue_reminder do
   author_url 'https://github.com/KeKkEmEn'
 
   settings default: {
-    'reminder_days' => 7,
-    'reminder_text' => 'This issue has not been updated for a while. Please update the status or add a comment.',
-    'reminder_roles' => []
     'days_before_due' => 3,
     'reminder_text' => 'This issue is due soon. Please update the status or add a comment.'
   }, partial: 'settings/issue_reminder_settings'
