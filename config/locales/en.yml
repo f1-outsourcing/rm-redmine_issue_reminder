@@ -1,10 +1,12 @@
 en:
   label_issue_reminder: "Issue Reminder"
   button_send_reminders: "Send Reminders"
-  notice_reminders_sent: "Reminders sent successfully"
+  notice_reminders_sent: "%{count} reminders sent successfully"
   label_reminder: "Reminder"
   label_issue_reminder_settings: "Issue Reminder Settings"
   label_reminder_days: "Days before reminder"
   label_reminder_text: "Reminder text"
   label_reminder_roles: "Roles to notify"
   label_days_before_due: "Days before due date to send reminder"
+  error_sending_reminders: "An error occurred while sending reminders"
+  text_issues_to_remind: "%{count} issues will receive reminders"
