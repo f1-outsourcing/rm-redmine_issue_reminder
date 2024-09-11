@@ -10,7 +10,17 @@
     <label for="settings_reminder_text"><%= l(:label_reminder_text) %></label>
     <%= text_area_tag 'settings[reminder_text]', @settings['reminder_text'], rows: 5, cols: 60 %>
   </p>
+
+  <p>
+    <label for="settings_days_before_due"><%= l(:label_days_before_due) %></label>
+    <%= text_field_tag 'settings[days_before_due]', @settings['days_before_due'], size: 3 %>
+  </p>
   
+  <p>
+    <label for="settings_reminder_text"><%= l(:label_reminder_text) %></label>
+    <%= text_area_tag 'settings[reminder_text]', @settings['reminder_text'], rows: 5, cols: 60 %>
+  </p>
+
   <p>
     <label><%= l(:label_reminder_roles) %></label>
     <% Role.givable.each do |role| %>
