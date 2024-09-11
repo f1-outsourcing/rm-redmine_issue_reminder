@@ -9,8 +9,9 @@ class IssueReminderController < ApplicationController
 
   def send_reminders
     @issues = find_reminder_issues
+    days_before_due = Setting.plugin_redmine_issue_reminder['days_before_due'].to_i
     @issues.each do |issue|
-      IssueReminderMailer.issue_reminder(issue).deliver_now
+      IssueReminderMailer.issue_reminder(issue, days_before_due).deliver_now
     end
     flash[:notice] = l(:notice_reminders_sent, count: @issues.count)
     redirect_to project_issue_reminder_path(@project)
@@ -27,7 +28,9 @@ class IssueReminderController < ApplicationController
   end
 
   def find_reminder_issues
-    @project.issues.open.where('updated_on < ?', reminder_threshold_date)
+    days_before_due = Setting.plugin_redmine_issue_reminder['days_before_due'].to_i
+    due_date = Date.today + days_before_due.days
+    @project.issues.open.where(due_date: due_date)
   end
 
   def reminder_threshold_date
