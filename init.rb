@@ -3,11 +3,11 @@ require_dependency 'redmine_issue_reminder/mailer_patch'
 
 Redmine::Plugin.register :redmine_issue_reminder do
   name 'Redmine Issue Reminder plugin'
-  author 'L'
+  author 'Your Name'
   description 'Sends email reminders for issues that have not been updated recently'
   version '0.1.0'
-  url 'https://github.com/KeKkEmEn/redmine_issue_reminder'
-  author_url 'https://github.com/KeKkEmEn'
+  url 'https://github.com/yourusername/redmine_issue_reminder'
+  author_url 'https://github.com/yourusername'
 
   settings default: {
     'reminder_days' => 7,
@@ -25,4 +25,8 @@ Redmine::Plugin.register :redmine_issue_reminder do
        caption: :label_issue_reminder, 
        after: :issues, 
        param: :project_id
+end
+
+Rails.configuration.to_prepare do
+  require_dependency 'redmine_issue_reminder/mailer_patch'
 end
