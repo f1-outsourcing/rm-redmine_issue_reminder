@@ -7,3 +7,4 @@ en:
   label_reminder_days: "Days before reminder"
   label_reminder_text: "Reminder text"
   label_reminder_roles: "Roles to notify"
+  label_days_before_due: "Days before due date to send reminder"
