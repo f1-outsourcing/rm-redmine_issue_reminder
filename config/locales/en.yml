@@ -10,3 +10,4 @@ en:
   label_days_before_due: "Days before due date to send reminder"
   error_sending_reminders: "An error occurred while sending reminders"
   text_issues_to_remind: "%{count} issues will receive reminders"
+  button_apply: "Apply"
