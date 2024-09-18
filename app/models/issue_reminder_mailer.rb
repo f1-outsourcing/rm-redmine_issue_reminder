@@ -22,6 +22,8 @@ class IssueReminderMailer < Mailer
     @reminder_text = Setting.plugin_redmine_issue_reminder['reminder_text'].to_s
 
     mail(to: to,
-         subject: "#{l(:label_reminder)}: #{issue.subject} (Due in #{@days_before_due} days)")
+         subject: "#{l(:label_reminder)}: #{issue.subject} (Due in #{@days_before_due} days)",
+         template_path: 'issue_reminder_mailer',
+         template_name: 'issue_reminder')
   end
 end
