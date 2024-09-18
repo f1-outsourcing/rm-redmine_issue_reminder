@@ -15,7 +15,7 @@ class IssueReminderController < ApplicationController
         IssueReminderMailer.issue_reminder(issue, @days_before_due).deliver_now
         sent_count += 1
       rescue => e
-        logger.error "Failed to send reminder for issue ##{issue.id}: #{e.message}"
+        logger.error "Failed to send reminder for issue ##{issue.id}: #{e.message}\n#{e.backtrace.join("\n")}"
       end
     end
     flash[:notice] = l(:notice_reminders_sent, count: sent_count)
@@ -38,6 +38,11 @@ class IssueReminderController < ApplicationController
   end
 
   def find_reminder_issues
+    due_date = Date.today + @days_before_due.days
+    @project.issues.open.where('due_date <= ?', due_date).order(due_date: :asc)
+  end
+end
+
     due_date = Date.today + @days_before_due.days
     @project.issues.open.where('due_date <= ?', due_date).order(due_date: :asc)
   end
