@@ -8,9 +8,11 @@
   <p>
     This issue is due in <%= @days_before_due %> days.
   </p>
-  <p>
-    <%= @reminder_text %>
-  </p>
+  <% if @reminder_text.present? %>
+    <p>
+      <%= @reminder_text %>
+    </p>
+  <% end %>
   <p>
     You can view the issue here: <%= link_to issue_url(@issue), issue_url(@issue) %>
   </p>
