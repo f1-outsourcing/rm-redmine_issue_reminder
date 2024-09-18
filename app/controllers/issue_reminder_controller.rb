@@ -12,8 +12,13 @@ class IssueReminderController < ApplicationController
     sent_count = 0
     @issues.each do |issue|
       begin
-        IssueReminderMailer.issue_reminder(issue, @days_before_due).deliver_now
-        sent_count += 1
+        mail = IssueReminderMailer.issue_reminder(issue, @days_before_due)
+        if mail
+          mail.deliver_now
+          sent_count += 1
+        else
+          logger.warn "No recipients for reminder of issue ##{issue.id}"
+        end
       rescue => e
         logger.error "Failed to send reminder for issue ##{issue.id}: #{e.message}\n#{e.backtrace.join("\n")}"
       end
@@ -42,4 +47,3 @@ class IssueReminderController < ApplicationController
     @project.issues.open.where('due_date <= ?', due_date).order(due_date: :asc)
   end
 end
-
