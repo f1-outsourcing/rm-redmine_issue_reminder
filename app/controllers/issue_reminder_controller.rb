@@ -41,7 +41,6 @@ class IssueReminderController < ApplicationController
     due_date = Date.today + @days_before_due.days
     @project.issues.open.where('due_date <= ?', due_date).order(due_date: :asc)
   end
-end
 
     due_date = Date.today + @days_before_due.days
     @project.issues.open.where('due_date <= ?', due_date).order(due_date: :asc)
