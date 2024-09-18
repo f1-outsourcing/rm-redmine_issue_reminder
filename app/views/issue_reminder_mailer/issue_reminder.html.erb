@@ -1,1 +1,18 @@
-{\rtf1}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <h1>Reminder: Issue #<%= @issue.id %> - <%= @issue.subject %></h1>
+  <p>
+    This issue is due in <%= @days_before_due %> days.
+  </p>
+  <p>
+    <%= @reminder_text %>
+  </p>
+  <p>
+    You can view the issue here: <%= link_to issue_url(@issue), issue_url(@issue) %>
+  </p>
+</body>
+</html>
