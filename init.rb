@@ -8,7 +8,7 @@ Redmine::Plugin.register :redmine_issue_reminder do
   name 'Redmine Issue Reminder plugin'
   author 'L Stuiver'
   description 'Sends email reminders for issues that have not been updated recently'
-  version '0.4.0'
+  version '1.1.2'
   url 'https://github.com/KeKkEmEn/redmine_issue_reminder'
   author_url 'https://github.com/KeKkEmEn'
 
