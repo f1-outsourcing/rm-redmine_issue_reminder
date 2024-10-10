@@ -1,5 +1,7 @@
 class IssueReminderMailer < Mailer
   def self.issue_reminder(issue, days_before_due)
+    Rails.logger.info "Preparing reminder email for issue ##{issue.id}"
+    
     to = if issue.assigned_to.is_a?(Group)
            issue.assigned_to.users.map(&:mail).compact
          elsif issue.assigned_to.is_a?(User) && issue.assigned_to.mail.present?
@@ -10,7 +12,12 @@ class IssueReminderMailer < Mailer
            [] # No valid recipients
          end
 
-    return if to.empty?
+    Rails.logger.info "Recipients for issue ##{issue.id}: #{to.join(', ')}"
+
+    if to.empty?
+      Rails.logger.warn "No recipients found for issue ##{issue.id}"
+      return nil
+    end
 
     reminder_mail = new
     reminder_mail.issue_reminder(issue, days_before_due, to)
@@ -20,6 +27,8 @@ class IssueReminderMailer < Mailer
     @issue = issue
     @days_before_due = days_before_due || 7 # Default to 7 days if nil
     @reminder_text = Setting.plugin_redmine_issue_reminder['reminder_text'].to_s
+
+    Rails.logger.info "Sending reminder email for issue ##{@issue.id} to #{to.join(', ')}"
 
     mail(to: to,
          subject: "#{l(:label_reminder)}: #{issue.subject} (Due in #{@days_before_due} days)",
