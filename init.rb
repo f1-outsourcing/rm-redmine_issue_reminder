@@ -35,3 +35,7 @@ Rails.configuration.to_prepare do
   require_dependency 'redmine_issue_reminder/mailer_patch'
   require_dependency 'issue_reminder_mailer'
 end
+
+Rails.application.config.to_prepare do
+  require_dependency 'issue_reminder_mailer'
+end
