@@ -11,3 +11,5 @@ en:
   error_sending_reminders: "An error occurred while sending reminders"
   text_issues_to_remind: "%{count} issues will receive reminders"
   button_apply: "Apply"
+  warning_some_reminders_not_sent: "%{count} reminders could not be sent"
+  
