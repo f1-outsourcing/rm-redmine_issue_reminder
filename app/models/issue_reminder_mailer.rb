@@ -11,13 +11,6 @@ class IssueReminderMailer < Mailer
       to = [issue.author.mail] # Fallback to the issue author if no assignee
     end
 
-    Rails.logger.info "Recipients for issue ##{issue.id}: #{to.join(', ')}"
-
-    if to.empty
-      Rails.logger.warn "No recipients found for issue ##{issue.id}"
-      return nil
-    end
-
     new.issue_reminder(issue, days_before_due, to)
   end
 
