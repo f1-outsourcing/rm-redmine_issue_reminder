@@ -19,8 +19,7 @@ class IssueReminderMailer < Mailer
       return nil
     end
 
-    reminder_mail = new
-    reminder_mail.issue_reminder(issue, days_before_due, to)
+    new.issue_reminder(issue, days_before_due, to)
   end
 
   def issue_reminder(issue, days_before_due, to)
@@ -32,9 +31,8 @@ class IssueReminderMailer < Mailer
 
     mail(to: to,
          subject: "#{l(:label_reminder)}: #{issue.subject} (Due in #{@days_before_due} days)") do |format|
-      format.text { render 'issue_reminder' }
-      format.html { render 'issue_reminder' }
+      format.text
+      format.html
     end
   end
 end
-
