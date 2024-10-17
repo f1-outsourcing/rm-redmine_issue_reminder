@@ -31,8 +31,10 @@ class IssueReminderMailer < Mailer
     Rails.logger.info "Sending reminder email for issue ##{@issue.id} to #{to.join(', ')}"
 
     mail(to: to,
-         subject: "#{l(:label_reminder)}: #{issue.subject} (Due in #{@days_before_due} days)",
-         template_path: 'issue_reminder_mailer',
-         template_name: 'issue_reminder')
+         subject: "#{l(:label_reminder)}: #{issue.subject} (Due in #{@days_before_due} days)") do |format|
+      format.text { render 'issue_reminder' }
+      format.html { render 'issue_reminder' }
+    end
   end
 end
+
