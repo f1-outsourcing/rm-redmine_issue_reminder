@@ -1,0 +1,9 @@
+Reminder: Issue #<%= @issue.id %> - <%= @issue.subject %>
+
+This issue is due in <%= @days_before_due %> days.
+
+<% if @reminder_text.present? %>
+<%= @reminder_text %>
+<% end %>
+
+You can view the issue here: <%= issue_url(@issue) %>
