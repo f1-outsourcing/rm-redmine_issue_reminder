@@ -13,7 +13,7 @@ class IssueReminderMailer < Mailer
 
     Rails.logger.info "Recipients for issue ##{issue.id}: #{to.join(', ')}"
 
-    if to.empty?
+    if to.empty
       Rails.logger.warn "No recipients found for issue ##{issue.id}"
       return nil
     end
