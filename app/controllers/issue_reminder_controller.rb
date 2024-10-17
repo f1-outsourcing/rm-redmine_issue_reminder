@@ -1,3 +1,4 @@
+
 class IssueReminderController < ApplicationController
   before_action :find_project
   before_action :authorize
@@ -20,7 +21,7 @@ class IssueReminderController < ApplicationController
         logger.info "Processing reminder for issue ##{issue.id}"
         mail = IssueReminderMailer.issue_reminder(issue, @days_before_due)
         if mail
-          mail.deliver_now
+          mail.deliver
           sent_count += 1
           logger.info "Successfully sent reminder for issue ##{issue.id}"
         else
