@@ -16,7 +16,7 @@ class IssueReminderMailer < Mailer
 
   def issue_reminder(issue, days_before_due, to)
     @issue = issue
-    @days_before_due = days_before_due || 7 # Default to 7 days if nil
+    @days_before_due = days_before_due || 7 # Default to 7 days if empty?
     @reminder_text = Setting.plugin_redmine_issue_reminder['reminder_text'].to_s
 
     Rails.logger.info "Sending reminder email for issue ##{@issue.id} to #{to.join(', ')}"
