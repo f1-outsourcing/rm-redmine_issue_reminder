@@ -28,6 +28,3 @@ class IssueReminderMailer < Mailer
     end
   end
 end
-
- puts "Reminder subject: #{subject.inspect}"
- puts "Reminder template: #{template_name.inspect}"
