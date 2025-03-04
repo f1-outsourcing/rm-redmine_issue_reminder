@@ -57,6 +57,7 @@ class IssueReminderController < ApplicationController
   end
 
   def set_days_before_due
+    @days_since = (params[:_days_since] || Setting.plugin_redmine_issue_reminder['reminder_maxmonths']).to_i * 30
     @days_before_due = (params[:days_before_due] || Setting.plugin_redmine_issue_reminder['days_before_due']).to_i
     @days_before_due = 7 if @days_before_due <= 0 # Default to 7 days if the value is invalid
     logger.info "Days before due set to: #{@days_before_due}"
@@ -64,7 +65,12 @@ class IssueReminderController < ApplicationController
 
   def find_reminder_issues
     due_date = Date.today + @days_before_due.days
-    issues = @project.issues.open.where('due_date <= ?', due_date).order(due_date: :asc)
+    thirty_days_ago = Date.today - 30.days
+    days_ago = Date.today - 3.days
+
+    issues = @project.issues.open
+        .where('(due_date <= ? AND due_date > ?) OR (due_date IS NULL AND updated_on > ?)', due_date, thirty_days_ago, days_ago)
+        .order(due_date: :asc)
     logger.info "Found #{issues.count} issues due before or on #{due_date}"
     issues
   end

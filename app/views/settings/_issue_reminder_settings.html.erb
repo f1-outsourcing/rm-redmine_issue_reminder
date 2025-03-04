@@ -1,6 +1,34 @@
 <fieldset>
   <legend><%= l(:label_issue_reminder_settings) %></legend>
+
+  <p>
+    <label for="settings_reminder_maxmonths"><%= l(:label_reminder_maxmonths) %></label>
+    <%= text_field_tag 'settings[reminder_maxmonths]', @settings['reminder_maxmonths'], size: 3 %>
+  </p>
+
+<div class=box>
+  <p>
+    <label for="settings_reminder_assigndays"><%= l(:label_reminder_assigndays) %></label>
+    <%= text_field_tag 'settings[reminder_assigndays]', @settings['reminder_assigndays'], size: 3 %>
+  </p>
   
+  <p>
+    <label for="settings_reminder_fromdays"><%= l(:label_reminder_fromdays) %></label>
+    <%= text_field_tag 'settings[reminder_fromdays]', @settings['reminder_fromdays'], size: 3 %>
+  </p>
+  
+  <p>
+    <label for="settings_reminder_fromfreqdays"><%= l(:label_reminder_fromfreqdays) %></label>
+    <%= text_field_tag 'settings[reminder_fromfreqdays]', @settings['reminder_fromfreqdays'], size: 3 %>
+  </p>
+  
+  <p>
+    <label for="settings_reminder_text_fromdays"><%= l(:label_reminder_text_fromdays) %></label>
+    <%= text_area_tag 'settings[reminder_text_fromdays]', @settings['reminder_text_fromdays'], rows: 5, cols: 60 %>
+  </p>
+</div>
+
+<div class=box>
   <p>
     <label for="settings_reminder_days"><%= l(:label_reminder_days) %></label>
     <%= text_field_tag 'settings[reminder_days]', @settings['reminder_days'], size: 3 %>
@@ -20,6 +48,7 @@
     <label for="settings_reminder_text"><%= l(:label_reminder_text) %></label>
     <%= text_area_tag 'settings[reminder_text]', @settings['reminder_text'], rows: 5, cols: 60 %>
   </p>
+</div>
 
   <p>
     <label><%= l(:label_reminder_roles) %></label>
